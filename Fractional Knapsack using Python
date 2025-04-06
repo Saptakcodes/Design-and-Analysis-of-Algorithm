@@ -1,0 +1,27 @@
+def fractional_knapsack(M,weight,profit,n):
+    #creating ratio of profit/weight
+    items=[]
+    for i in range(n):
+        ratio=profit[i]/weight[i]
+        items.append((ratio,weight[i],profit[i]))
+        #note : items.append(()) takes a tuple not 3 arguments only one argument
+    #sorting in descending order
+    items.sort(reverse=True)
+    
+    total_value=0.0
+    
+    #if full fits, add in total value else take fraction of remaining weight
+    for ratio,wt,p in items:
+        if M >= wt:
+            total_value+=p
+            M-=wt
+        else:
+            total_value +=ratio*M
+            break
+    return total_value
+
+profit=[60,80,100]
+weight=[30,50,70]
+M=80
+print("Total profit is=",fractional_knapsack(M,weight,profit,len(profit)))
+    
