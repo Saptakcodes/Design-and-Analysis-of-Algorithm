@@ -1,0 +1,25 @@
+jobs=['A','B','C','D','E']
+deadline=[2,1,2,3,1]
+profit=[100,20,50,10,30]
+
+#combile job info
+job_info=list(zip(jobs,deadline,profit))
+
+#sorting in descending order of profit
+descending=sorted(job_info,key=lambda x:x[2],reverse=True)
+
+#creating time slots
+l=max(deadline)
+schedule=[None]*l
+
+#assigning slots to job
+total_profit=0
+for jobs,deadline,profit in descending:
+    for t in range(deadline-1,-1,-1):
+        if schedule[t] is None:
+            schedule[t]=jobs
+            total_profit+=profit
+            break
+
+print("Scheduled Jobs",schedule)
+print("\nTotal profit associated with it",total_profit)
