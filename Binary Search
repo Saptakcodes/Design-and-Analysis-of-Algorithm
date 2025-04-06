@@ -1,0 +1,26 @@
+#include<stdio.h>
+int binary_search(int arr[],int x,int n){
+    int low=0;
+    int high=n-1;
+    while (low <=high){
+        int mid=(low+high)/2;
+        if (arr[mid]==0){
+            return mid;
+        }
+        else if (arr[mid]<x){
+            low=mid+1;
+        }
+        else{
+            high=mid-1;
+        }
+    }
+    return -1; //if not found
+}
+int main(){
+    int arr[10]={3,4,7,9,34,65,87};
+    int n=sizeof(arr)/sizeof(arr[0]);
+    int x=65;
+    int z=binary_search(arr,x,n);
+    printf("found at index=%d",z);
+    return 0;
+}
