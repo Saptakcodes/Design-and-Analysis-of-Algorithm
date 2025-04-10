@@ -1,0 +1,17 @@
+def dfs(graph,start):
+    visited=set()
+    stack=[start]
+    #while stack is not empty
+    while stack:
+        node=stack.pop()
+        if node not in visited:
+            print(node, end='->')
+            visited.add(node)
+            #add neighbors in the reversed order
+            for neighbor in reversed(graph[node]):
+                if neighbor not in visited:
+                    stack.append(neighbor)
+                    
+                    
+graph={0:[1,2,3], 1:[], 2:[4], 3:[], 4:[]}
+dfs(graph,0)
