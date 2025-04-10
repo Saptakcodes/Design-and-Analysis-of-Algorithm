@@ -1,0 +1,35 @@
+from queue import PriorityQueue
+def best_first_search(start,goal):
+    visited=set()
+    pq=PriorityQueue()
+    pq.put((heuristics[start],start))
+    
+    while not pq.empty():
+        h,node=pq.get()
+        
+        if node is not visited:
+            print(f"{node} h=({h})")
+            
+            if goal ==node:
+                print("goal reached!!")
+                return
+            visited.add(node)
+            
+            for neighbor,_ in graph[node]:
+                if neighbor not in visited:
+                    pq.put((heuristics[neighbor],neighbor))
+graph = {
+    'A': [('B', 1), ('C', 3)],
+    'B': [('D', 2)],
+    'C': [],
+    'D': []
+}
+
+# Heuristic values for each node (h(n))
+heuristics = {
+    'A': 5,
+    'B': 3,
+    'C': 4,
+    'D': 1
+}
+best_first_search('A','D')
